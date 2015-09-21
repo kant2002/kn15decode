@@ -1,0 +1,19 @@
+{
+  "name": "kn15decode",
+  "version": "1.0.0",
+  "description": "Decoder for the KN15 code used for sending hydrologic data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kant2002/kn15decode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kant2002/kn15decode/issues"
+  },
+  "homepage": "https://github.com/kant2002/kn15decode#readme"
+}
