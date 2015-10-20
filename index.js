@@ -32,7 +32,27 @@ function decodeSection0(data) {
 	}
 }
 
+/**
+ * Decode the group 1 of section 1
+ * @param data {String} String with 5 characters data.
+ * @returns {Number} level of water in the river. This level represented in the centimeters
+ */
+function decodeSection1group1(data) {
+    if (data[0] !== '1') {
+        throw new Error("This is not group 1");
+    }
+    
+    var waterLevelString = data.substr(1, 5);
+    var waterLevel = parseInt(waterLevelString);
+    if (waterLevel > 5000) {
+        return 5000 - waterLevel;
+    } else {
+        return waterLevel;
+    }
+}
+
 module.exports = {
 	decode: decode,
-	decodeSection0: decodeSection0
+	decodeSection0: decodeSection0,
+    decodeSection1group1: decodeSection1group1
 };

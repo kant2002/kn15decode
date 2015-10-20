@@ -20,6 +20,10 @@
       <SubType>Code</SubType>
       <TestFramework>Mocha</TestFramework>
     </Compile>
+    <Compile Include="tests\section1Tests.js">
+      <SubType>Code</SubType>
+      <TestFramework>Mocha</TestFramework>
+    </Compile>
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Compile Include="index.js" />
