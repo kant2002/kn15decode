@@ -33,6 +33,15 @@ function decodeSection0(data) {
 }
 
 /**
+ * Gets number of group which this message represents
+ * @param data {String} String with 5 characters data.
+ * @returns {Number} group number
+ */
+function getGroup(data) {
+    return parseInt(data[0]);
+}
+
+/**
  * Decode the group 1 of section 1
  * @param data {String} String with 5 characters data.
  * @returns {Number} level of water in the river. This level represented in the centimeters
@@ -51,8 +60,54 @@ function decodeSection1group1(data) {
     }
 }
 
+/**
+ * Decode the group 1 of section 2
+ * @param data {String} String with 5 characters data.
+ * @returns {Number} level of water in the river. This level represented in the centimeters
+ */
+function decodeSection1group2(data) {
+    if (data[0] !== '2') {
+        throw new Error("This is not group 2");
+    }
+    
+    var waterLevelChangeString = data.substr(1, 3);
+    var waterLevelChange = parseInt(waterLevelChangeString);
+    var waterLevelChangeTypeString = data.substr(4, 5);
+    if (waterLevelChangeTypeString === "0") {
+        return 0;
+    } else if (waterLevelChangeTypeString === "1") {
+        return waterLevelChange;
+    } else if (waterLevelChangeTypeString === "2") {
+        return -waterLevelChange;
+    } else {
+        throw new Error("Incorrect water level chagne value.");
+    }
+}
+
+/**
+ * Decode the group 1 of section 3
+ * @param data {String} String with 5 characters data.
+ * @returns {Number} level of water in the river. This level represented in the centimeters
+ */
+function decodeSection1group3(data) {
+    if (data[0] !== '3') {
+        throw new Error("This is not group 3");
+    }
+    
+    var waterLevelString = data.substr(1, 5);
+    var waterLevel = parseInt(waterLevelString);
+    if (waterLevel > 5000) {
+        return 5000 - waterLevel;
+    } else {
+        return waterLevel;
+    }
+}
+
 module.exports = {
 	decode: decode,
+    getGroup: getGroup,
 	decodeSection0: decodeSection0,
-    decodeSection1group1: decodeSection1group1
+    decodeSection1group1: decodeSection1group1,
+    decodeSection1group2: decodeSection1group2,
+    decodeSection1group3: decodeSection1group3
 };
